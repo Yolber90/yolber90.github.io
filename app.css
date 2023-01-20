@@ -101,14 +101,5 @@ tr{
     padding-bottom: 0px;
 }
 
-@media screen and (min-width: 600px) {
-    .container{
-        width: 100%;
-        
-    }
-    th, td, tr{
-        width: 100px;
-    }
 
-}
 
