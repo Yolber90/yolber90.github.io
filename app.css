@@ -16,8 +16,6 @@ header{
     background-color: lightblue;
     position:fixed;
     top: 0;
-    
-    
 }
 .appName{
     font-size: 45px;
@@ -71,9 +69,7 @@ header{
 .rocketImg > img{
     height: 100%;
     width: 100%;
-    object-fit: cover;
-    
-    
+    object-fit: cover; 
 }
     
 
@@ -86,7 +82,6 @@ header{
 .rocketDetails1 > p{
     font-size: 13px;
     margin-bottom: 0px;
-    
 }
 table{
     table-layout: fixed;
@@ -106,4 +101,14 @@ tr{
     padding-bottom: 0px;
 }
 
+@media screen and (min-width: 600px) {
+    .container{
+        width: 100%;
+        
+    }
+    th, td, tr{
+        width: 100px;
+    }
+
+}
 
