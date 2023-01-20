@@ -22,8 +22,12 @@
         <form>
             <lable id="agency" name="agency">Agency</lable>
             <select id="agency" class="agency">
-                
+                <option value="All">All</option>                
             </select>
+            <button id="submit" before="asdf">Submit</button><br>
+            
+            <p id="hits" class="badge badge-warning"></p><br>
+            <p id="next-launch" class="badge badge-primary text-wrap"></p>
         </form>
         <hr>
     </div>
@@ -35,33 +39,96 @@
         
         $(document).ready(function () {
 
-            $.get("https://fdo.rocketlaunch.live/json/launches?key=49d3c350-8af8-4606-ba6d-f67f4bcaca8f", function (data) {
 
-                                
+            $.get("https://fdo.rocketlaunch.live/json/launches?key=49d3c350-8af8-4606-ba6d-f67f4bcaca8f", function (data) {
+                
+
                 
                 const launches = data['result']
+                
+                let provider = []
+                let vehicle = []
+                let mission = []
+                let locationCo = []
+                let locationName = []
+                let padName = []
+                let description = []
+                let time = []
 
-                // Variable Declerations
-                let index = launches.map(ID => {
-                    const provider = ID['provider']['name'].split(',');
-                    const vehicle = ID['vehicle']['name'];
-                    const mission = ID['missions'][0]['name'];
-                    const locationCo = ID['pad']['location']['country'];
-                    const locationName = ID['pad']['location']['name'];
-                    const padName = ID['pad']['name'];
+                
+
+
+
+                
+                let providerOptions = []
+                for(let i = 0; i < launches.length; i++){
+                    providerOptions.push(launches[i]['provider']['name'])
+                }
+                var providerOptions2 = [...new Set(providerOptions)].sort();                
+                
+                providerOptions2.map(OptPro => {
+                    $(".agency").append(
+                        "<option value ='" + OptPro + "''>" + OptPro + "</option>"
+                    );
+                })
+
+
+
+                $("#submit").on("click", function (e) {
+                    let provider = []
+                    let vehicle = []
+                    let mission = []
+                    let locationCo = []
+                    let locationName = []
+                    let padName = []
+                    let description = []
+                    let time = []
+
                     
-                    // const time = new Date(ID['win_open'])
-                    function time(tm){
-                        if(tm == null){
-                            return 'TBD';
-                        }else{
-                            return new Date(tm);
+                    for(let i = 0; i < launches.length ; i++){
+
+                        function fillFields(){
+                            provider.push(launches[i]['provider']['name'])
+                            vehicle.push(launches[i]['vehicle']['name'])
+                            mission.push(launches[i]['missions'][0]['name'])
+                            locationCo.push(launches[i]['pad']['location']['country'])
+                            locationName.push(launches[i]['pad']['location']['name'])
+                            padName.push(launches[i]['pad']['name'])
+                            description.push(launches[i]['launch_description'])
+                            time.push(launches[i]['win_open'])
+
                         }
-                    }                     
+                        function timeTranslator(tm){
+                            if(tm == null){
+                                return 'TBD';
+                            }else{
+                                return new Date(tm);
+                            }
+                        }
+
+                        
+
+                        if($(".agency").val() == 'All'){
+                            fillFields()
+                            
+                        }else if(launches[i]['provider']['name'] == $(".agency").val()){
+                            fillFields()
+
+                        }else{}
+
+                    $(".results").empty();
+                    $(".results").remove()
+
+                }
+
+                
+                for(let i = 0; i < provider.length ; i++){
+                    $("#hits").html(provider.length);
+                    $("#next-launch").html(timeTranslator(time[0]));
                     $(".container").append(
                         "<div class='results shadow p-3 mb-5 bg-white rounded'>" +
                             "<div class='rocketImg'>" +
-                                "<img  src='/media/" + vehicle + ".jpg' alt='" + vehicle + "'>" +
+                                "<img  src='/media/" + vehicle[i] + ".jpg' alt='" + vehicle[i] + "'>" +
                             "</div>" + 
                         "<div class='rocketDetails1'>" +
                             "<table cellpadding=5>"+
@@ -74,35 +141,39 @@
                                 "<th>Pad</th>" +
                             "</tr>" +
                             "<tr>" +
-                                "<td>" + provider +"</td>" +
-                                "<td>" + vehicle + "</td>" +
-                                "<td>" + mission + "</td>" +
-                                "<td>" + locationCo + "</td>" +
-                                "<td>" + locationName + "</td>" +
-                                "<td>" + padName + "</td>" +
+                                "<td>" + provider[i] +"</td>" +
+                                "<td>" + vehicle[i] + "</td>" +
+                                "<td>" + mission[i] + "</td>" +
+                                "<td>" + locationCo[i] + "</td>" +
+                                "<td>" + locationName[i] + "</td>" +
+                                "<td>" + padName[i] + "</td>" +
                             "</tr>" +
                         "</table>" +
                         "<hr>" +
                         "<table>" +
                             "<tr>" +
                                 "<th >Launch Date/Time</th>" +
-                                "<td>" + time(ID['win_open']) + "</td>" +
+                                "<td>" + timeTranslator(time[i]) + "</td>" +
                             "</tr>" +
                         "</table>" +
                         "<p style='margin-left: 10px' class='text-primary'>Mission Description:</p>" +
-                         "<p style='margin-left: 10px'>" + ID['launch_description'] + ".</p>" +
+                        "<p style='margin-left: 10px'>" + description[i] + "</p>" +
                     "</div>"
-                )
+                    
+                    )
+                    $("th").addClass("text-primary")
+                    $("td").addClass("text-secondary")
+                }
+                e.preventDefault(); // Prevents page from reloading
                 
+                    
                 });
                 
-
                 
                 
-
-
 
             })
+            
 
 
         });
