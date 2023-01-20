@@ -24,7 +24,10 @@
             <select id="agency" class="agency">
                 <option value="All">All</option>                
             </select>
-            <button id="submit">Submit</button>
+            <button id="submit" before="asdf">Submit</button><br>
+            
+            <p id="hits" class="badge badge-warning"></p><br>
+            <p id="next-launch" class="badge badge-primary text-wrap"></p>
         </form>
         <hr>
     </div>
@@ -103,6 +106,7 @@
                             }
                         }
 
+                        
 
                         if($(".agency").val() == 'All'){
                             fillFields()
@@ -110,19 +114,17 @@
                         }else if(launches[i]['provider']['name'] == $(".agency").val()){
                             fillFields()
 
-                        }else{
-                        
-                        }
+                        }else{}
+
+                    $(".results").empty();
+                    $(".results").remove()
 
                 }
 
                 
-                
-                $(".results").empty();
-                $(".results").remove()
-                
                 for(let i = 0; i < provider.length ; i++){
-                    
+                    $("#hits").html(provider.length);
+                    $("#next-launch").html(timeTranslator(time[0]));
                     $(".container").append(
                         "<div class='results shadow p-3 mb-5 bg-white rounded'>" +
                             "<div class='rocketImg'>" +
@@ -161,9 +163,6 @@
                     )
                     $("th").addClass("text-primary")
                     $("td").addClass("text-secondary")
-                    
-                    
-
                 }
                 e.preventDefault(); // Prevents page from reloading
                 
