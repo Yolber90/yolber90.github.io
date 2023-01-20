@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+/* font-family: 'Space Mono', monospace; */
+*{
+    font-family: 'Space Mono', monospace;
+}
+
+body{
+    margin: 0px;
+    padding-top: 0px;
+}
+/* Header */
+header{
+    width: 100%;
+    height: 100px;
+    background-color: lightblue;
+    position:fixed;
+    top: 0;
+    
+    
+}
+.appName{
+    font-size: 45px;
+    text-align: center;
+}
+
+/* Body */
+.container{
+    width: 60%;
+    background-color: #84878936;
+    height: auto;
+    margin: auto;
+    margin-top: 105px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+
+}
+.container > h2{
+    text-align: center;
+}
+.container > hr{
+    width: 25%;
+    border: 1px solid rgb(41, 103, 216);
+}
+
+
+.results{
+    width: 90%;
+    height: auto;
+    background-color: lightblue;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    
+}
+.rocketImg{
+    width: 25%;
+    height: auto;
+    /* border: 1px solid rgba(49, 51, 51, 0.596); */
+    border-radius: 3px;
+    overflow: hidden;
+
+    
+}
+.rocketImg > img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    
+    
+}
+    
+
+.rocketDetails1{
+    width: 100%;
+    height: 100%;
+    display: block;
+    
+}
+.rocketDetails1 > p{
+    font-size: 13px;
+    margin-bottom: 0px;
+    
+}
+table{
+    table-layout: fixed;
+}
+
+th, td, tr{
+    padding: 10px;
+    border-right: 1px solid rgba(44, 44, 44, 0.37);
+    width: 155px;
+    text-align: center;
+    font-size: 13px;
+}
+td{
+    padding-top: 0px;
+}
+tr{
+    padding-bottom: 0px;
+}
+
+

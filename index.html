@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <treta name="viewport" content="widr=device-widr, initial-scale=1.0tr">
+        <title>Document</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/ab9a9d34df.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <h1 class="appName">Rocket Launch App</h1>
+    </header>
+    <div class="container">
+        <h2>Upcoming Launches</h2>
+        <form>
+            <lable id="agency" name="agency">Agency</lable>
+            <select id="agency" class="agency">
+                
+            </select>
+        </form>
+        <hr>
+    </div>
+    <div>
+
+    </div>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+
+            $.get("https://fdo.rocketlaunch.live/json/launches?key=49d3c350-8af8-4606-ba6d-f67f4bcaca8f", function (data) {
+
+                                
+                
+                const launches = data['result']
+
+                // Variable Declerations
+                let index = launches.map(ID => {
+                    const provider = ID['provider']['name'].split(',');
+                    const vehicle = ID['vehicle']['name'];
+                    const mission = ID['missions'][0]['name'];
+                    const locationCo = ID['pad']['location']['country'];
+                    const locationName = ID['pad']['location']['name'];
+                    const padName = ID['pad']['name'];
+                    
+                    // const time = new Date(ID['win_open'])
+                    function time(tm){
+                        if(tm == null){
+                            return 'TBD';
+                        }else{
+                            return new Date(tm);
+                        }
+                    }                     
+                    $(".container").append(
+                        "<div class='results shadow p-3 mb-5 bg-white rounded'>" +
+                            "<div class='rocketImg'>" +
+                                "<img  src='/media/" + vehicle + ".jpg' alt='" + vehicle + "'>" +
+                            "</div>" + 
+                        "<div class='rocketDetails1'>" +
+                            "<table cellpadding=5>"+
+                            "<tr>"+
+                                "<th>Launch Provider</th>"+
+                                "<th>Vehicle</th>" +
+                                "<th>Mission</th>" +
+                                "<th>Country</th>" +
+                                "<th>Launch Site</th>" +
+                                "<th>Pad</th>" +
+                            "</tr>" +
+                            "<tr>" +
+                                "<td>" + provider +"</td>" +
+                                "<td>" + vehicle + "</td>" +
+                                "<td>" + mission + "</td>" +
+                                "<td>" + locationCo + "</td>" +
+                                "<td>" + locationName + "</td>" +
+                                "<td>" + padName + "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<hr>" +
+                        "<table>" +
+                            "<tr>" +
+                                "<th >Launch Date/Time</th>" +
+                                "<td>" + time(ID['win_open']) + "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<p style='margin-left: 10px' class='text-primary'>Mission Description:</p>" +
+                         "<p style='margin-left: 10px'>" + ID['launch_description'] + ".</p>" +
+                    "</div>"
+                )
+                
+                });
+                
+
+                
+                
+
+
+
+            })
+
+
+        });
+    </script>
+
+</body>
+
+</html>
