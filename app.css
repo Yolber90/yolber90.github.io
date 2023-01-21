@@ -41,12 +41,7 @@ header{
     border: 1px solid rgb(41, 103, 216);
 }
 
-#hits::before{
-    content: "Results: ";
-}
-#next-launch::before{
-    content: "Next Launch: ";
-}
+
 
 .results{
     width: 90%;
@@ -103,3 +98,8 @@ tr{
 
 
 
+/* @media screen and (max-width: 600px) {
+    #container{
+        width: 100%;
+    }
+} */

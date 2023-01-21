@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Today/Target Dates</h1>
+    <p id="today"></p>
+    <p id="target"></p>
+
+    <h1>Days</h1>
+    <p id="todayDay"></p>
+    <p id="targetDay"></p>
+    <p id="dayDiff"></p>
+
+    <h1>Hours</h1>
+    <p id="todayHrs"></p>
+    <p id="targetHrs"></p>
+    <p id="hrDiff"></p>
+
+    <h1>Minutes</h1>
+    <p id="todayMin"></p>
+    <p id="targetMin"></p>
+    <p id="minDiff"></p>
+
+    <h1>Seconds</h1>
+    <p id="todaySec"></p>
+    <p id="targetSec"></p>
+    <p id="secDiff"></p>
+
+    <h1 id="totalDiff">Total Difference</h1>
+
+    <script>
+        $(document).ready(function () {
+
+            function tMinus(countdown){
+            setInterval(function(){
+                const total = new Date(1674514800 * 1000) - new Date();
+                const seconds = Math.floor((total / 1000) % 60);
+                const minutes = Math.floor((total / 1000 / 60) % 60);
+                const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+                const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+                $("#today").html(days + ":" + hours + ":" + minutes + ":" + seconds);
+            }, 1000)
+        }
+
+        
+                        
+
+            
+                // const sortDate = 1674514800;
+                // // Get Full Dates
+                // const today = new Date();
+                // const target = new Date(sortDate * 1000);
+                // $("#today").html(today);
+                // $("#target").html(target);
+
+                // setInterval(function(){
+                // // get Days
+                // const todayDay = new Date().getDate()
+                // const targetDay = new Date(sortDate * 1000).getDate()
+                // $("#todayDay").html(todayDay);
+                // $("#targetDay").html(targetDay);
+                // let dayDiff = (targetDay - todayDay)
+                // $("#dayDiff").html(dayDiff);
+
+
+                // // get Hours
+                // const todayHrs = new Date().getHours();
+                // const targetHrs = new Date(sortDate * 1000).getHours();
+                // $("#todayHrs").html(todayHrs);
+                // $("#targetHrs").html(targetHrs);
+                // let hrDiff = (Math.abs(targetHrs -  todayHrs))
+                // $("#hrDiff").html(hrDiff)
+
+                // // get Minutes
+                // const todayMin = new Date().getMinutes();
+                // const targetMin = new Date(sortDate * 1000).getMinutes();
+                // $("#todayMin").html(todayMin);
+                // $("#targetMin").html(targetMin);
+                // let minDiff = (Math.abs(targetMin -  todayMin))
+                // $("#minDiff").html(minDiff)
+
+                // // get Seconds
+                // const todaySec = new Date().getSeconds();
+                // const targetSec = new Date(sortDate * 1000).getSeconds();
+                // $("#todaySec").html(todaySec);
+                // $("#targetSec").html(targetSec);
+                // let secDiff = (Math.floor(todaySec - targetSec))
+                // $("#secDiff").html(secDiff)
+
+                // $("#totalDiff").html("-" + dayDiff + "D:" + hrDiff + "H:" + minDiff + "M:" + secDiff + "S:");
+
+                // }, 1000)
+
+
+                // const diffTime = Math.abs(date2 - date1);
+                // const diffTimeHrs = Math.abs(date2Hrs - date1Hrs)
+                // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+
+            });
+
+    </script>
+</body>
+
+</html>
