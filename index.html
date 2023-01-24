@@ -24,17 +24,16 @@
             <select id="agency" class="agency">
                 <option value="All">All</option>
             </select>
-            <button id="submit" before="asdf">Submit</button><br>
+            <button id="submit" before="asdf">Submit</button>Results:   <span id="hits"></span><br>
             <table>
                 <tr>
-                    <th>Results</th>
+
                     <th>Next Launch</th>
                     <th>Provider</th>
                     <th>Vehicle</th>
                     <th>T-</th>
                 </tr>
                 <tr>
-                    <td id="hits" style="width: 180px;"></td>
                     <td id="next-launch"></td>
                     <td id="provider"></td>
                     <td id="vehicle"></td>
@@ -61,38 +60,32 @@
             $.get("https://fdo.rocketlaunch.live/json/launches?key=49d3c350-8af8-4606-ba6d-f67f4bcaca8f", function (data) {
 
 
-
+                
                 const launches = data['result']
-
-                let provider = []
-                let vehicle = []
-                let mission = []
-                let locationCo = []
-                let locationName = []
-                let padName = []
-                let description = []
-                let time = []
-
-
-
-
-
 
                 let providerOptions = []
                 for (let i = 0; i < launches.length; i++) {
                     providerOptions.push(launches[i]['provider']['name'])
                 }
+
+                // Creates a new set of all providers with duplicates removed
                 var providerOptions2 = [...new Set(providerOptions)].sort();
 
+                // Pickup unduplicated providers and append to options, create a drop down with all providers
                 providerOptions2.map(OptPro => {
                     $(".agency").append(
                         "<option value ='" + OptPro + "''>" + OptPro + "</option>"
                     );
                 })
 
-
+                // On Load, auto click the submit button, thsi will load 'All' launches.
+                $(function(){
+                    $("#submit").click()
+                })
 
                 $("#submit").on("click", function (e) {
+                    
+                    
                     let provider = []
                     let vehicle = []
                     let mission = []
@@ -124,32 +117,41 @@
                             }
                         }
                         
+
                         function tMinus(){
+                            // Interval will re-run every second, updating the countdow time.
                             setInterval(function(){
                                 
                                 let total = new Date(time[0] * 1000) - new Date();
                                 let seconds = Math.floor((total / 1000) % 60);
                                 let minutes = Math.floor((total / 1000 / 60) % 60);
-                                let hours = (Math.floor((total / (1000 * 60 * 60)) % 24));
-                                let days = Math.floor(total / (1000 * 60 * 60 * 24));
+                                let hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+                                let days =  Math.floor(total / (1000 * 60 * 60 * 24));
 
 
                                 // load html with countdown, used terinary operator (arg? if true: if false) to return a 0 in fron of time if < 10
                                 $("#t-minus").html(
-                                    days + "d:" + 
+                                    days + " Days<br>" + 
                                     (hours < 10 ? '0' + hours: hours) + "h:" + 
                                     (minutes < 10? '0' + minutes: minutes) + "m:" + 
                                     (seconds < 10 ? '0' + seconds: seconds) + "s"
                                 )
+                                
+
 
                             }, 1000)
+
                         }
                         
-                        tMinus()
+                        
+                        
+                        
+                        tMinus(time[0])
                         $("#vehicle").html(vehicle[0]);
                         $("#provider").html(provider[0]);
                         
-
+                        
+                        
                         if ($(".agency").val() == 'All') {
                             fillFields()
 
@@ -159,10 +161,12 @@
                         } else { }
 
                         // On Submit, remove div results & childs, then re= append with new variables.
-                        $(".results").remove();
+                        
 
                     }
-
+                    
+                    $(".results").remove();
+                    
 
                     for (let i = 0; i < provider.length; i++) {
 
@@ -197,12 +201,15 @@
                                         "</tr>" +
                                     "</table>" +
                                     "<hr>" +
-                            "<table>" +
-                            "<tr>" +
-                            "<th >Launch Date/Time</th>" +
-                            "<td>" + timeTranslator(time[i]) + "</td>" +
-                            "</tr>" +
-                            "</table>" +
+                                    "<table>" +
+                                        "<tr>" +
+                                            "<th >Launch Date/Time</th>" +
+                                            "<td>" + timeTranslator(time[i]) + "</td>" +
+                                            "<th>T-minus</th>" +
+                                            "<td id='tminus-td'></td>" + 
+                                        "</tr>" +
+                                    "</table>" +
+                            
                             "<p style='margin-left: 10px' class='text-primary'>Mission Description:</p>" +
                             "<p style='margin-left: 10px'>" + description[i] + "</p>" +
                             "</div>"

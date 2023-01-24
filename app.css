@@ -16,6 +16,7 @@ header{
     background-color: lightblue;
     position:fixed;
     top: 0;
+    box-shadow: 0px 4px 1px rgb(27, 112, 216);
 }
 .appName{
     font-size: 45px;
@@ -31,6 +32,7 @@ header{
     margin-top: 105px;
     padding-top: 20px;
     padding-bottom: 50px;
+    
 
 }
 .container > h2{
