@@ -160,7 +160,7 @@
 
                         } else { }
 
-                        // On Submit, remove div results & childs, then re= append with new variables.
+                        // On Submit, remove div results & childs, then re-append with new variables.
                         
 
                     }
@@ -169,7 +169,7 @@
                     
 
                     for (let i = 0; i < provider.length; i++) {
-
+                        
                         $("#hits").html(provider.length);
                         $("#next-launch").html(timeTranslator(time[0]));
                         
@@ -179,7 +179,7 @@
                         $(".container").append(
                             "<div class='results shadow p-3 mb-5 bg-white rounded'>" +
                                 "<div class='rocketImg'>" +
-                                "<img  src='/media/" + vehicle[i] + ".jpg' alt='" + vehicle[i] + "'>" +
+                                "<img  src='/media/" + vehicle[i] + ".jpg' alt='" + vehicle[i] + "''>" + //Loads the image from media folder.
                             "</div>" +
                                 "<div class='rocketDetails1'>" +
                                     "<table cellpadding=5>" +
