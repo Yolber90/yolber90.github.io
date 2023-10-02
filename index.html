@@ -17,7 +17,7 @@
     <header>
         <h1 class="appName">Rocket Launch App</h1>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <h2>Upcoming Launches</h2>
         <form>
             <lable id="agency" name="agency">Agency</lable>
@@ -176,7 +176,7 @@
                         // $("#t-minus").html(new Date());
 
 
-                        $(".container").append(
+                        $(".container-fluid").append(
                             "<div class='results shadow p-3 mb-5 bg-white rounded'>" +
                                 "<div class='rocketImg'>" +
                                 "<img  src='/media/" + vehicle[i] + ".jpg' alt='" + vehicle[i] + "''>" + //Loads the image from media folder.

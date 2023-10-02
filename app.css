@@ -24,7 +24,7 @@ header{
 }
 
 /* Body */
-.container{
+.container-fluid{
     width: 60%;
     background-color: #84878936;
     height: auto;
@@ -35,10 +35,10 @@ header{
     
 
 }
-.container > h2{
+.container-fluid > h2{
     text-align: center;
 }
-.container > hr{
+.container-fluid > hr{
     width: 25%;
     border: 1px solid rgb(41, 103, 216);
 }
