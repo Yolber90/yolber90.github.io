@@ -10,31 +10,38 @@ body{
     padding-top: 0px;
 }
 /* Header */
-header{
+/* header{
     width: 100%;
     height: 100px;
     background-color: lightblue;
     position:absolute;
     top: 0;
     box-shadow: 0px 4px 1px rgb(27, 112, 216);
-}
+} */
+
+
 .appName{
     font-size: 45px;
     text-align: center;
 }
+
 
 #header-info{
     margin: 80px;
     margin-bottom: 10px;
 }
 
+h2{
+    color: white;
+    font-size: 50px;
+}
+
 /* Body */
 .container-fluid{
-    width: 60%;
     background-image: linear-gradient(180deg, rgb(12, 12, 12), rgb(107, 107, 107));
     height: auto;
     margin: auto;
-    margin-top: 105px;
+    /* margin-top: 105px; */
     padding-top: 20px;
     padding-bottom: 50px;
     
