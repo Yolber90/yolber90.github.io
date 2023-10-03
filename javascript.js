@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    
 
     // API GET, subscription based api.
     $.get("https://fdo.rocketlaunch.live/json/launches?key=49d3c350-8af8-4606-ba6d-f67f4bcaca8f", function (data) {
@@ -118,7 +120,7 @@ $(document).ready(function () {
 
 
                 $(".container-fluid").append(
-                    "<div class='results shadow p-3 mb-5 bg-white rounded'>" +
+                    "<div id='this-thing' class='results shadow p-3 mb-5 bg-white rounded'>" +
                         "<div class='rocketImg'>" +
                         "<img  src='media/" + vehicle[i] + ".jpg' alt='" + vehicle[i] + "''>" + //Loads the image from media folder.
                     "</div>" +
@@ -158,8 +160,22 @@ $(document).ready(function () {
                 )
                 $("th").addClass("text-primary")
                 $("td").addClass("text-secondary")
+                
             }
             e.preventDefault(); // Prevents page from reloading
+            
+            
+
+            // could not override CSS with @media, so tried it by reading window width with jqery and setting the .results width with jquery window width reading.
+            var win = $(window.innerWidth)[0]
+            
+            if(win < 400){
+                $(".results").css('width', '105%');
+            }else{
+                $(".results").css('width', '90%');
+            }
+
+            console.log(win)
             
         });
 
