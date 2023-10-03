@@ -23,10 +23,15 @@ header{
     text-align: center;
 }
 
+#header-info{
+    margin: 80px;
+    margin-bottom: 10px;
+}
+
 /* Body */
 .container-fluid{
     width: 60%;
-    background-color: #84878936;
+    background-image: linear-gradient(180deg, rgb(12, 12, 12), rgb(107, 107, 107));
     height: auto;
     margin: auto;
     margin-top: 105px;
@@ -84,12 +89,17 @@ table{
     table-layout: fixed;
 }
 
+
+
 th, td, tr{
     padding: 10px;
     border-right: 1px solid rgba(44, 44, 44, 0.37);
     width: 155px;
     text-align: center;
     font-size: 13px;
+}
+th{
+    font-size: 18px;
 }
 td{
     padding-top: 0px;
