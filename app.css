@@ -114,6 +114,16 @@ tr{
     padding-bottom: 0px;
 }
 
+tr > td{
+    color: wheat;
+}
+
+.nxt-launch-txt{
+    color: white !important;
+    font-size: 15px;
+    text-shadow: 1px 1px 1px rgb(80, 118, 241);
+}
+
 
 
 /* @media (max-width: 400){
